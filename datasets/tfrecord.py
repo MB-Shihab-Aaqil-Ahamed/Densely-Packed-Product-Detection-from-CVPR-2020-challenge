@@ -9,7 +9,7 @@ def wrap_float(value):
   return tf.train.Feature(float_list=tf.train.FloatList(value=value))
 
 def convert_tfrecord(images,labels,out_path):
-  root='/content//SKU110K_fixed/images'
+  root='/SKU110K_fixed/images'
   with tf.io.TFRecordWriter(out_path) as writer:
     for i in range(len(images)):
       image=os.path.join(root,images[i])
