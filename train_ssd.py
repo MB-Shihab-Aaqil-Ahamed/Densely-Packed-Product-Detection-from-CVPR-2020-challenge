@@ -8,6 +8,7 @@ import re
 
 from datasets.tfrecord import convert_tfrecord
 from models.ssd import ssd_model
+from utils import total_loss
 
 #Matched Boxes
 def create_data(data):
