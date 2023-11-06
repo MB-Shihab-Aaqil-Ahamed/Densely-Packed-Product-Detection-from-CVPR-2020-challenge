@@ -13,7 +13,7 @@ source download_data.sh
 
 ## Acknowledgements
 
-Our code borrows heavily from (SSD)[https://github.com/weiliu89/caffe/tree/ssd]repository. We thank the authors of SSD for releasing their code. If you use our model, please consider citing them as well.
+Our code borrows heavily from [SSD](https://github.com/weiliu89/caffe/tree/ssd) repository. We thank the authors of SSD for releasing their code. If you use our model, please consider citing them as well.
 
 ## Trained Model will be released soon !!
 
