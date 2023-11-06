@@ -165,38 +165,3 @@ def pre_process_img(img,feature_box_conv,matched):
 
   plt.title('Matched Boxes')
   imshow(img)
-
-#Matched Boxes
-def create_data(data):
-
-  i = 20
-  images,labels = data.iloc[i].name,data.iloc[i]['label']
-  # labels  x1y1x2y2
-  root='/content/SKU110K_fixed/images'
-
-  images=os.path.join(root,images)
-
-  #GT boxes creation
-  img = images
-  label = labels
-  show_img(img,label)
-  feature_box = create_df_box(feature_layers)
-  feature_box = convert_scale(feature_box,'abs')
-  feature_box_conv = convert_format(feature_box,'x1y1x2y2')
-  iou_matrix = iou(feature_box_conv,np.array(label)[:,:4])
-  gt_box,matched = df_match(convert_format(np.array(label),'xywh'),iou_matrix)
-
-  # gt_box xywh
-  print(tf.math.count_nonzero(matched))
-  pre_process_img(img,convert_format(feature_box,'x1y1x2y2'),matched)
-  boxes=gt_box[:,:4]
-  classes = gt_box[:,4]
-  classes = tf.cast(classes+1, dtype=tf.int32) #0 for background class
-  matched = tf.cast(matched,dtype=tf.int32)
-  classes = tf.cast(classes*matched,dtype=tf.int32)
-  classes = tf.one_hot(classes,depth=nClasses+1,dtype=tf.float32)
-  normalised_gtbox = normalised_ground_truth(boxes,feature_box,'encode')
-  normalised_gtbox = normalised_ground_truth(normalised_gtbox,feature_box,'decode')
-  df_box = tf.concat((normalised_gtbox,classes),axis=-1)
-
-  return df_box
