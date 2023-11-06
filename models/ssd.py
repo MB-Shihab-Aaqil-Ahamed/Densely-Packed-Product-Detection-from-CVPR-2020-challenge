@@ -1,3 +1,5 @@
+import tensorflow as tf
+
 def conv_layer(filter,kernel_size,
               layer,strides=1,
               padding='same',
@@ -18,7 +20,7 @@ def conv_layer(filter,kernel_size,
   return layer
 
 
-def SKU110K_model():
+def ssd_model():
   outputs=[]
   densenet_121 = tf.keras.applications.DenseNet121(
                                             input_shape=(hImage, wImage, 3),
