@@ -91,6 +91,6 @@ def ssd_model():
   outputs.append(output)
 
   out = tf.keras.layers.Concatenate(axis=1)(outputs)
-  model = tf.keras.models.Model(densenet_121.input,out, name='SKU110K_model')
+  model = tf.keras.models.Model(densenet_121.input,out, name='ssd_model')
   model.summary()
   return model
